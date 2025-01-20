@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(66, 153, 225, 0.3) rgba(200, 230, 255, 0.6);
+}
+
+/* Background and Layout */
+html,
+body {
+  overflow-x: hidden;
+  background: linear-gradient(180deg, #e0f2ff, #b3daff, #99ccff);
+  color: #063652;
+  scroll-behavior: smooth;
+}
+
+/* Animation for Calm Movements */
+@keyframes blob {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-15px) translateX(10px);
+  }
+}
+
+.animate-blob {
+  animation: blob 14s ease-in-out infinite;
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(200, 230, 255, 0.9);
+  backdrop-filter: blur(12px);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(66, 153, 225, 0.5);
+  border-radius: 10px;
+  border: 2px solid rgba(200, 230, 255, 0.9);
+  box-shadow: 0 0 8px rgba(66, 153, 225, 0.6);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(66, 153, 225, 0.7);
+  box-shadow: 0 0 12px rgba(66, 153, 225, 0.8);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: rgba(66, 153, 225, 0.9);
+  box-shadow: 0 0 16px rgba(66, 153, 225, 1);
+}
+
+/* Utility Classes for Tranquil Design */
+.bg-soft-blue {
+  background: linear-gradient(135deg, #e0f7ff, #b3daff, #80bfff);
+}
+
+.text-calm {
+  color: #003b5c;
+}
+
+.btn-soft {
+  background-color: #4285f4;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-soft:hover {
+  background-color: #316ac8;
+  box-shadow: 0 4px 12px rgba(66, 153, 225, 0.5);
+}
+
+.header-title {
+  font-size: 2.7rem;
+  font-weight: 600;
+  margin: 20px 0;
+  color: #002a42;
+}
+
+.description-text {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #ffffff;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
