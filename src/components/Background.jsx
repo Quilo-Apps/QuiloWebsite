@@ -9,44 +9,46 @@ const AnimatedBackground = () => {
     { x: 20, y: -8 },
   ];
 
-  const scrollData = useRef({ currentScroll: 0, requestId: null });
-
   useEffect(() => {
-    const handleScroll = () => {
-      const { currentScroll } = scrollData.current;
-      const newScroll = window.pageYOffset;
+    let currentScroll = 0;
+    let requestId;
 
-      scrollData.current.currentScroll = newScroll;
+    const handleScroll = () => {
+      const newScroll = window.pageYOffset;
+      currentScroll = newScroll;
 
       blobRefs.current.forEach((blob, index) => {
         const initialPos = initialPositions[index];
 
-        // Dynamic offsets with more pronounced movement and rotation for extra flair
-        const xOffset = Math.sin(newScroll / 100 + index * 0.5) * 400;
-        const yOffset = Math.cos(newScroll / 100 + index * 0.5) * 60;
-        const rotation = Math.sin(newScroll / 300 + index * 0.5) * 15;
+        // Calculating movement in both X and Y directions
+        const xOffset = Math.sin(newScroll / 100 + index * 0.5) * 340; // Horizontal movement
+        const yOffset = Math.cos(newScroll / 100 + index * 0.5) * 40; // Vertical movement
 
         const x = initialPos.x + xOffset;
         const y = initialPos.y + yOffset;
 
-        // Applying transformation with rotation and smooth transition
-        blob.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
+        // Apply transformation with smooth transition
+        blob.style.transform = `translate(${x}px, ${y}px)`;
         blob.style.transition = "transform 1.4s ease-out";
       });
+
+      requestId = requestAnimationFrame(handleScroll);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      cancelAnimationFrame(requestId);
     };
   }, []);
 
   return (
     <div className="fixed inset-0 overflow-hidden">
       <div className="absolute inset-0 z-0">
+        {/* Animated blobs */}
         <div
           ref={(ref) => (blobRefs.current[0] = ref)}
-          className="absolute top-0 -left-4 w-96 h-96 bg-gradient-to-r from-[#fdb827] to-[#565669] rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-pulse"
+          className="absolute top-0 -left-4 md:w-96 md:h-96 w-72 h-72 bg-gradient-to-r from-[#fdb827] to-[#565669] rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-pulse"
         ></div>
         <div
           ref={(ref) => (blobRefs.current[1] = ref)}
@@ -62,8 +64,8 @@ const AnimatedBackground = () => {
         ></div>
       </div>
 
-      {/* Adding a subtle gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#fdb827] to-[#565669] opacity-10"></div>
+      {/* Subtle grid overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f10_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f10_1px,transparent_1px)] bg-[size:24px_24px]"></div>
     </div>
   );
 };

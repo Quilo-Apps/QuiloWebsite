@@ -5,9 +5,8 @@ import Home from "./Pages/Home";
 import About from "./Pages/About";
 import AnimatedBackground from "./components/Background";
 import Navbar from "./components/Navbar";
-import Portofolio from "./Pages/Portofolio";
+import Portfolio from "./Pages/Portfolio";
 import ContactPage from "./Pages/Contact";
-import ProjectDetails from "./components/ProjectDetail";
 import WelcomeScreen from "./Pages/WelcomeScreen";
 import { AnimatePresence } from 'framer-motion';
 
@@ -26,15 +25,15 @@ const LandingPage = ({ showWelcome, setShowWelcome }) => {
           <AnimatedBackground />
           <Home />
           <About />
-          <Portofolio />
+          <Portfolio />
           <ContactPage />
           <footer className="bg-[#030014] py-6">
   <center>
     <hr className="my-3 border-gray-400 opacity-15 sm:mx-auto lg:my-6 text-center" />
     <span className="block text-sm pb-4 text-gray-500 text-center dark:text-gray-400">
-      © 2024{" "}
+      Copyright © 2025{" "}
       <a href="https://flowbite.com/" className="hover:underline">
-        Quilo
+        Quilo Apps- All rights reserved.
       </a>
     </span>
   </center>
@@ -47,22 +46,7 @@ const LandingPage = ({ showWelcome, setShowWelcome }) => {
   );
 };
 
-const ProjectPageLayout = () => (
-  <>
-    <ProjectDetails />
-    <footer>
-      <center>
-        <hr className="my-3 border-gray-400 opacity-15 sm:mx-auto lg:my-6 text-center" />
-        <span className="block text-sm pb-4 text-gray-500 text-center dark:text-gray-400">
-          2024{" "}
-          <a href="https://flowbite.com/" className="hover:underline">
-            Quilo
-          </a>
-        </span>
-      </center>
-    </footer>
-  </>
-);
+
 
 function App() {
   const [showWelcome, setShowWelcome] = useState(true);
@@ -71,7 +55,6 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage showWelcome={showWelcome} setShowWelcome={setShowWelcome} />} />
-        <Route path="/project/:id" element={<ProjectPageLayout />} />
       </Routes>
     </BrowserRouter>
   );

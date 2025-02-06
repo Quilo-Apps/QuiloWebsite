@@ -11,6 +11,8 @@ import CardProject from "../components/CardProject";
 import "aos/dist/aos.css";
 import { Code } from "lucide-react";
 
+// Importing TechStackIcon
+import TechStackIcon from "../components/TechStackIcon";
 
 function TabPanel({ children, value, index, ...other }) {
   return (
@@ -47,35 +49,31 @@ function a11yProps(index) {
 const projects = [
   {
     id: "always-sunny-app",
-    Img: "https://via.placeholder.com/300",
+    Img: "AlwaysSunny.png",
     Title: "Always Sunny App",
-    Description: "A weather forecasting app with a cheerful and sunny theme. Provides real-time updates and detailed reports.",
+    Description: "A Flutter app that helps users plan trips by calculating a “Sunny Score” for their destination based on a weather API.",
   },
   {
-    id: "portfolio-site",
-    Img: "https://via.placeholder.com/300",
+    id: "engaged-app",
+    Img: "UnderConstruction.png",
     Title: "Engaged",
-    Description: "A weather forecasting app with a cheerful and sunny theme. Provides real-time updates and detailed reports.",
+    Description: "A dating app designed for genuine relationships by encouraging users to focus on one conversation at a time.",
   },
 ];
 
 const techStacks = [
-  {
-    name: "ReactJS",
-    icon: "react",
-  },
-  {
-    name: "Tailwind CSS",
-    icon: "tailwindcss",
-  },
-  {
-    name: "Firebase",
-    icon: "firebase",
-  },
-  {
-    name: "Material UI",
-    icon: "materialui",
-  },
+  { icon: "/html.svg", name: "HTML" },
+  { icon: "/css.svg", name: "CSS" },
+  { icon: "/javascript.svg", name: "JavaScript" },
+  { icon: "/flutter.svg", name: "Flutter" },
+  { icon: "/dart.svg", name: "Dart" },
+  { icon: "/react.svg", name: "React" },
+  { icon: "/java.svg", name: "Java" },
+  { icon: "/python.svg", name: "Python" },
+  { icon: "/csharp.svg", name: "C#" },
+  { icon: "/cpp.svg", name: "C++" },
+  { icon: "/sql.svg", name: "SQL" },
+  { icon: "/c.svg", name: "C" }
 ];
 
 export default function FullWidthTabs() {
@@ -96,8 +94,8 @@ export default function FullWidthTabs() {
   const displayedProjects = showAllProjects ? projects : projects.slice(0, initialItems);
 
   return (
-    <div className="md:px-[10%] px-[5%] w-full sm:mt-0 mt-[3rem] bg-[#030014] overflow-hidden" id="Portfolio">
-      {/* Header section */}
+<div className="min-h-screen md:px-[10%] px-[5%] w-full sm:mt-0 mt-[-3rem] bg-[#030014] pb-10 sm:pb-20 lg:pb-40" id="Portfolio">
+{/* Header section */}
       <div className="text-center pb-10" data-aos="fade-up" data-aos-duration="1000">
         <h2 className="inline-block text-3xl md:text-5xl font-bold text-center mx-auto text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
           <span
@@ -183,7 +181,6 @@ export default function FullWidthTabs() {
             }}
           >
             <Tab
-              icon={<Code className="mb-2 w-5 h-5 transition-all duration-300" />}
               label="Projects"
               {...a11yProps(0)}
             />
@@ -199,7 +196,7 @@ export default function FullWidthTabs() {
           {/* Projects Tab */}
           <TabPanel value={value} index={0} dir={theme.direction}>
             <div className="container mx-auto flex justify-center items-center overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 gap-5">
+              <div className="grid gri sd-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 gap-5">
                 {displayedProjects.map((project, index) => (
                   <div
                     key={project.id || index}
@@ -222,7 +219,6 @@ export default function FullWidthTabs() {
           {/* Tech Stack Tab */}
           <TabPanel value={value} index={1} dir={theme.direction}>
             <div className="container mx-auto text-center">
-              <h3 className="text-2xl font-bold text-white mb-6">Tech Stack</h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
                 {techStacks.map((tech, index) => (
                   <div
@@ -231,7 +227,8 @@ export default function FullWidthTabs() {
                     data-aos-duration="1000"
                     className="bg-purple-800 rounded-lg p-4 text-center"
                   >
-                    <h4 className="text-xl text-white font-semibold mb-2">{tech.name}</h4>
+                    {/* Using TechStackIcon Component */}
+                    <TechStackIcon TechStackIcon={tech.icon} Language={tech.name} />
                   </div>
                 ))}
               </div>
